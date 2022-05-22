@@ -15,7 +15,7 @@ public class HomeWorkApp {
         int a =200;
         int b=52;
         if (a+b>=0) {
-            System.out.println("" +
+            System.out.println(
                     "positive summ");
     }
         else
