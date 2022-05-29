@@ -21,8 +21,7 @@ public class lesson3 {
             if (arr[i] == 0) {
                 arr[i] = 1;
 
-            } else {
-                arr[i] = 0;
+
             }
 
 
