@@ -12,6 +12,7 @@ public class lesson3 {
         array3();
         System.out.println();
         array4();
+        array5(5, 10);
     }
 
     static void array1() {
@@ -63,13 +64,18 @@ public class lesson3 {
                 }
 
 
-
-
                 System.out.print(arr4[i][j] + " ");
             }
             System.out.println();
         }
 
+
+    }
+
+    public static int[] array5(int len, int initialValue) {
+        int[] arr5 = new int[len];
+        Arrays.fill(arr5, initialValue);
+        return arr5;
 
     }
 
