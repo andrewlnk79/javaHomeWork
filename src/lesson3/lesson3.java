@@ -12,7 +12,9 @@ public class lesson3 {
         array3();
         System.out.println();
         array4();
-        array5(5, 10);
+
+        int[] arr5print =array5(5,15);
+        System.out.println(Arrays.toString(arr5print));
     }
 
     static void array1() {
@@ -76,6 +78,7 @@ public class lesson3 {
         int[] arr5 = new int[len];
         Arrays.fill(arr5, initialValue);
         return arr5;
+
 
     }
 
