@@ -1,7 +1,10 @@
 package lesson4;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
+
+
 
 public class lesson4 {
     //Поле
@@ -25,6 +28,9 @@ public class lesson4 {
 
     //Сканер
     public static final Scanner SC = new Scanner(System.in);
+
+    //Рандом
+    public static final Random RNDM = new Random();
 
     public static void printMap() {
         for (int i = 0; i <= map.length; i++) {
@@ -60,6 +66,20 @@ public class lesson4 {
 
     }
 
+    //ход компьютера
+    public static void aiTurne() {
+        int x, y;
+        do {
+            x = RNDM.nextInt(SISE);
+            y = RNDM.nextInt(SISE);
+
+        }
+        while (!isCellValid(x, y));
+        System.out.println("now turn the computer" + (x + 1) + " " + (y + 1));
+        map[y][x] = DOT_O;
+
+    }
+
     //проверка значений поля
     public static boolean isCellValid(int x, int y) {
         if (x < 0 || x >= SISE || y < 0 || y >= SISE) {
@@ -73,16 +93,92 @@ public class lesson4 {
 
     }
 
+    //проверка на победу
+    public static boolean checkWin(char symbol) {
+        //строки
+
+        if (map[0][0] == symbol && map[0][1] == symbol && map[0][2] == symbol) {
+            return true;
+        }
+        if (map[1][0] == symbol && map[1][1] == symbol && map[1][2] == symbol) {
+            return true;
+        }
+        if (map[2][0] == symbol && map[2][2] == symbol && map[2][2] == symbol) {
+            return true;
+        }
+        //стбцы
+        if (map[0][0] == symbol && map[1][0] == symbol && map[2][0] == symbol) {
+            return true;
+        }
+        if (map[0][1] == symbol && map[1][1] == symbol && map[2][1] == symbol) {
+            return true;
+
+        }
+        if (map[0][2] == symbol && map[1][2] == symbol && map[2][2] == symbol) {
+            return true;
+        }
+        //диагонали
+        if (map[0][0] == symbol && map[1][1] == symbol && map[2][2] == symbol) {
+            return true;
+        }
+        if (map[0][2] == symbol && map[1][1] == symbol && map[2][0] == symbol) {
+            return true;
+        }
+        return false;
+
+
+    }
+
+    // проверка нет свободных ячеек
+    public static boolean isMapFull() {
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map.length; j++) {
+                if (map[i][j] == EMPTY_DOT) {
+                    return false;
+
+                }
+
+
+            }
+
+        }
+        return true;
+
+    }
+
 
     public static void main(String[] args) {
         initMap();
         printMap();
-        manTurn();
-        printMap();
-        manTurn();
-        printMap();
-        manTurn();
-        printMap();
+        while (true) {
+            manTurn();
+            printMap();
+            if (checkWin(DOT_X)) {
+                System.out.println("Win the man");
+                break;
+            }
+            if (isMapFull()) {
+                System.out.println("Drow");
 
+            }
+
+            aiTurne();
+            printMap();
+            if (checkWin(DOT_O)) {
+                System.out.println("Win the computer");
+                break;
+            }
+            if (checkWin(DOT_X)) {
+                System.out.println("Win the man");
+                break;
+            }
+            if (isMapFull()) {
+                System.out.println("Drow");
+            }
+        }
     }
 }
+
+
+
+
