@@ -5,7 +5,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-
 public class lesson4 {
     //Поле
     public static char[][] map;
@@ -95,39 +94,26 @@ public class lesson4 {
 
     //проверка на победу
     public static boolean checkWin(char symbol) {
-        //строки
 
-        if (map[0][0] == symbol && map[0][1] == symbol && map[0][2] == symbol) {
-            return true;
-        }
-        if (map[1][0] == symbol && map[1][1] == symbol && map[1][2] == symbol) {
-            return true;
-        }
-        if (map[2][0] == symbol && map[2][2] == symbol && map[2][2] == symbol) {
-            return true;
-        }
-        //стбцы
-        if (map[0][0] == symbol && map[1][0] == symbol && map[2][0] == symbol) {
-            return true;
-        }
-        if (map[0][1] == symbol && map[1][1] == symbol && map[2][1] == symbol) {
-            return true;
 
+        for (int i = 0; i < 3; i++) {
+            if ((map[i][0] == symbol && map[i][1] == symbol && map[0][2] == symbol) ||
+                    (map[0][i] == symbol && map[1][i] == symbol && map[2][i] == symbol)) {
+                return true;
+            }
         }
-        if (map[0][2] == symbol && map[1][2] == symbol && map[2][2] == symbol) {
-            return true;
-        }
+
+
         //диагонали
-        if (map[0][0] == symbol && map[1][1] == symbol && map[2][2] == symbol) {
+        if ((map[0][0] == symbol && map[1][1] == symbol && map[2][2] == symbol) ||
+                (map[0][2] == symbol && map[1][1] == symbol && map[2][0] == symbol)) {
             return true;
         }
-        if (map[0][2] == symbol && map[1][1] == symbol && map[2][0] == symbol) {
-            return true;
-        }
+
         return false;
 
-
     }
+
 
     // проверка нет свободных ячеек
     public static boolean isMapFull() {
@@ -178,6 +164,7 @@ public class lesson4 {
         }
     }
 }
+
 
 
 
